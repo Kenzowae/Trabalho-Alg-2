@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Site produzido por Fabiola e Rodrigo Kenzo, trabalho de Algoritmos e Estrutura de Dados 2, Voe Heap -->
+        <lang="pt-br">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Log</title>
+        <!-- Link do tailwindcss para deixar o site estilizado -->
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    </head>
+    <body class="min-h-screen flex flex-col">
+        <header>
+            <div class="bg-sky-700 text-white shadow-lg p-3 w-full flex">
+                <div class="text-xl font-bold py-2 px-30">
+                     <a href="../index.html" class="px-4 hover:text-shadow-lg">Voe Heap</a></li>
+                </div>
+                <div class="items-center flex justify-end flex-1">
+                    <nav class="flex-1">
+                        <ul class="flex justify-end flex-1 gap-6 text-lg flex">
+                            <li><a href="../index.html" class="px-4 hover:text-shadow-lg">Códigos</a></li>
+                            <li><a href="relatorio.html" class="px-4 hover:text-shadow-lg">Relatório</a></li>
+                            <li><a href="log.html" class="px-4 hover:text-shadow-lg">Log de Execução</a></li>
+                            <li><a href="" class="px-4 hover:text-shadow-lg">Sobre</a></li>
+                        </ul>
+                    </nav>
+                </div>
+              </div>
+        </header>
+        <div class="max-w-3xl mx-auto space-y-4 my-16">
+            <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <button onclick="toggleAccordion('accordion-1')" 
+                class="w-full flex justify-between items-center p-4 bg-white text-left font-semibold text-gray-800 hover:bg-gray-50 focus:outline-none transition-colors">
+                <span>Log 1</span>
+                <svg id="icon-accordion-1" class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+                </button>
+                <div id="accordion-1" class="hidden px-4 pb-4 pt-2 text-gray-600 bg-black border-t border-gray-100">
+                <pre>
+            =============================================================================
+            Inicio da execucao: programa que implementa lista em vetor para ilustrar log.
+            Prof. Elias P. Duarte Jr.  -  Disciplina Algoritmos e Estruturas de Dados II
+            =============================================================================
+            Iniciei a Lista, que pode ter no maximo 4 elementos.
+            A Lista estah vazia
+            Inseri elemento = 1 na Lista
+            Veja a Lista: [ 1 ]
+            Inseri elemento = 2 na Lista
+            Veja a Lista: [ 1 2 ]
+            Inseri elemento = 3 na Lista
+            Inseri elemento = 4 na Lista
+            Veja a Lista: [ 1 2 3 4 ]
+            ERRO: impossivel inserir elemento = 5, Lista cheia!
+            Removi elemento = 3 da posicao 2 da Lista
+            Veja a Lista: [ 1 2 4 ]
+            Removi elemento = 1 da posicao 0 da Lista
+            Veja a Lista: [ 2 4 ]
+            ERRO: impossivel remover, posicao 10 inexistente!
+            Removi elemento = 4 da posicao 1 da Lista
+            Veja a Lista: [ 2 ]
+            Removi elemento = 2 da posicao 0 da Lista
+            Veja a Lista: [ ]
+            ERRO: impossivel remover, Lista Vazia!
+            A Lista estah vazia
+            </pre>
+                </div>
+            </div>
+            </div>
+        <script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+        </script>
+    </body>
+</html>
