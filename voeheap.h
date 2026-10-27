@@ -30,7 +30,7 @@ typedef struct {
 
 
 // Função que inicializa o Heap com uma capacidade específica //
-Heap* InicHeap(int capacidade);
+Heap* IniciaHeap(int capacidade);
 
 // Função que insere um passageiro no Heap //
 int InsereHeap(Heap* h, Passageiro p);
