@@ -1,12 +1,15 @@
 #include "voeheap.h"
 
-Heap* IniciaHeap(int capacidade) {
-    Heap *h = (Heap*) malloc(sizeof(Heap)); // incializa o Heap por malloc //
+Heap* InicHeap(int capacidade) {
+    Heap *h = (Heap*) malloc(sizeof(Heap));
     if (!h)
         return NULL;
     h->vetor = (Passageiro*) malloc(sizeof(Passageiro));
-    if (!(h->vetor)) // verifica se deu certo //
+    if (!(h->vetor))
         return NULL;
+
+    h->tamanho = 0;
+    h->capacidade = capacidade;
     return h;
 }
 
@@ -17,7 +20,7 @@ Passageiro RemoveHeap(Heap* h, Metricas* m) {
 }
 
 void Heapfy(Passageiro* vetor,int tamanho, int indice, Metricas* m) {
-    int maior = indice; 
+    int maior = indice;
     int esq = 2 * indice + 1;
     int dir = 2 * indice + 2;
 
@@ -41,16 +44,38 @@ void Heapfy(Passageiro* vetor,int tamanho, int indice, Metricas* m) {
 }
 
 int ChecaHeap(Heap* h) {
-}
-
-void ImprimeHeap(Heap* h) {
-    printf("\n--- Fila de Embarque ---\n");
-    for(int i = 0; i < h->tamanho; i++){
-        printf("Passageiro %s | Prioridade: %d\n", h->vetor[i].nome, h->vetor[i].prioridade );
+    if (!h || !h->vetor)
+        return 0;
+    
+    if(h->tamanho <= 1)
+        return 1;
+    
+    for(int i = 0;i <= h->tamanho/2; i++){
+        int esq = 2 * i + 1;
+        int dir = 2 * i + 2;
+    
+        if(esq < h->tamanho && h->vetor[i].prioridade < h->vetor[esq].prioridade)
+            return 0;
+        
+        if(dir < h->tamanho && h->vetor[i].prioridade < h->vetor[dir].prioridade)
+            return 0;
     }
+    return 1;
 }
 
-void ConstruirHeap(Heap* h, Metricas* m) {
+void ImprimeHeap(Heap* h) {    
+    printf("\n--- Fila de Embarque ---\n");
+
+    for(int i = 0; i < h->tamanho; i++)
+        printf("Passageiro %s | Prioridade: %d\n", h->vetor[i].nome, h->vetor[i].prioridade );
+}
+
+void ConstruirHeap(Heap* h) {
+    if (!h || !h->vetor || h->tamanho <= 1)
+        return;
+    
+    for(int i = (h->tamanho/2); i >= 0; i--)
+        Heapfy(h->vetor, h->tamanho, i, NULL);
 }
 
 void HeapSort(Passageiro* vetor, int n, Metricas* m) {
@@ -131,7 +156,7 @@ void InsertSort(Passageiro* vetor, int n, Metricas* m) {
 void TrocaPassageiro(Passageiro* a, Passageiro* b, Metricas* m) { 
     Passageiro passageiro_temp = *a;
     *a = *b;
-    *b = passageiro_temp; // Efetua a troca de passageiro utilizando um passageiro temporario //
+    *b = passageiro_temp;
     if (m)
         m->trocas++;
 }
