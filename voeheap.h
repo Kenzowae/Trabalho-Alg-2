@@ -15,7 +15,7 @@ typedef struct {
     int prioridade;
 } Passageiro;
 
-// Definindo a estrutura do Heap e das métricas de comparação e troca //
+// Definindo a estrutura do Heap //
 typedef struct {
     Passageiro *vetor; 
     int tamanho;       
@@ -30,13 +30,13 @@ typedef struct {
 
 
 // Função que inicializa o Heap com uma capacidade específica //
-Heap* IniciaHeap(int capacidade);
+Heap* InicHeap(int capacidade);
 
 // Função que insere um passageiro no Heap //
-int InsereHeap(Heap* h, Passageiro p);
+int InsereHeap(Heap* h, Passageiro p, Metricas* m);
 
 // Função que remove o passageiro com maior prioridade do Heap //
-Passageiro RemoveHeap(Heap* h);
+Passageiro RemoveHeap(Heap* h, Metricas* m);
 
 // Heapfy adaptado para receber o vetor diretamente, útil para o HeapSort
 void Heapfy(Passageiro* vetor, int tamanho, int indice, Metricas* m);
@@ -51,27 +51,28 @@ void ImprimeHeap(Heap* h);
 void HeapSort(Passageiro* vetor, int n, Metricas* m);
 
 // Função do QuickSort //
-void QuickSort(Passageiro* vetor, int inicio, int fim);
+void QuickSort(Passageiro* vetor, int inicio, int fim, Metricas* m);
 
 // Mediana de três para o QuickSort //
-int MedianaDeTres(Passageiro* vetor, int inicio, int fim);
+int MedianaDeTres(Passageiro* vetor, int inicio, int fim, Metricas* m);
 
 // Função de partição para o QuickSort //
-int Particiona(Passageiro* vetor, int inicio, int fim);
+int Particiona(Passageiro* vetor, int inicio, int fim, Metricas* m);
 
 // Função de ordenação pelo Insertion Sort //
-void InsertSort(Passageiro* vetor, int n);
+void InsertSort(Passageiro* vetor, int n, Metricas* m);
 
 // Função auxiliar que troca dois passageiros e incrementa a métrica de trocas //
 void TrocaPassageiro(Passageiro* a, Passageiro* b, Metricas* m);
 
 // Função que exibe o menu de opções //
-void Menu();
+void Menu(Heap* h);
 
 // Função que gera um vetor de passageiros com dados aleatórios //
 void GeraVetorAleatorio(Passageiro* vetor, int tamanho);
 
 // Função que compara o desempenho dos algoritmos de ordenação //
-void CompararAlgoritmos();
+void ComparaAlgoritmos(void);
 
-#endif // VOEHEAP_H
+
+#endif
